@@ -11,15 +11,13 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 library.add(fas);
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
-
-  const isDark = theme === "dark";
-  const currentTheme = isDark ? darkTheme : lightTheme;
+  const [color, setColor] = useState("dark");
+  const currentTheme = color === "dark" ? darkTheme : lightTheme;
 
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
-      <Sidebar themeName={theme} setTheme={setTheme} />
+      <Sidebar color={color} setColor={setColor} />
     </ThemeProvider>
   );
 }

@@ -32,7 +32,7 @@ const bottomRoutes = [
   { title: "Support", icon: "phone-volume", path: "/support" },
 ];
 
-const Sidebar = ({ themeName, setTheme }) => {
+const Sidebar = ({ color, setColor }) => {
   const [isOpened, setIsOpened] = useState(false);
   const [isActive, setIsActive] = useState(routes[0].path);
 
@@ -87,15 +87,15 @@ const Sidebar = ({ themeName, setTheme }) => {
       </MenuSection>
       <SidebarFooter>
         <ThemeToggle
-          onClick={() => setTheme(themeName === "dark" ? "light" : "dark")}
+          onClick={() => setColor(color === "dark" ? "light" : "dark")}
         >
           <IconWrapper>
             <FontAwesomeIcon
-              icon={["fas", themeName === "dark" ? "sun" : "moon"]}
+              icon={["fas", color === "dark" ? "sun" : "moon"]}
             />
           </IconWrapper>
           <MenuItemText isOpened={isOpened}>
-            {themeName === "dark" ? "Light" : "Dark"}
+            {color === "dark" ? "Light" : "Dark"}
           </MenuItemText>
         </ThemeToggle>
       </SidebarFooter>

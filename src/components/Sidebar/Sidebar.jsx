@@ -15,6 +15,7 @@ import {
   MenuItemText,
   ThemeToggle,
   IconWrapper,
+  SidebarFooter,
 } from "./Sidebar.styled";
 
 const routes = [
@@ -83,6 +84,8 @@ const Sidebar = ({ themeName, setTheme }) => {
             <MenuItemText isOpened={isOpened}>{route.title}</MenuItemText>
           </MenuItem>
         ))}
+      </MenuSection>
+      <SidebarFooter>
         <ThemeToggle
           onClick={() => setTheme(themeName === "dark" ? "light" : "dark")}
         >
@@ -95,7 +98,7 @@ const Sidebar = ({ themeName, setTheme }) => {
             {themeName === "dark" ? "Light" : "Dark"}
           </MenuItemText>
         </ThemeToggle>
-      </MenuSection>
+      </SidebarFooter>
     </SidebarContainer>
   );
 };

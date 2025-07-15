@@ -6,7 +6,7 @@ export const SidebarContainer = styled.div`
   width: ${({ isOpened }) => (isOpened ? "220px" : "80px")};
   background: ${({ theme }) => theme.sidebarBg};
   color: ${({ theme }) => theme.text};
-  min-height: 97vh;
+  height: 97vh;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -32,6 +32,7 @@ export const MenuSection = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  flex-basis: content;
   gap: 8px;
   padding: 0 12px;
 `;
@@ -96,7 +97,7 @@ export const ThemeToggle = styled.button`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 18px;
+  padding: 20px;
   border-radius: 18px;
   border: none;
   cursor: pointer;
@@ -113,4 +114,11 @@ export const ThemeToggle = styled.button`
 export const IconWrapper = styled.span`
   width: 20px;
   display: flex;
+`;
+
+export const SidebarFooter = styled.div`
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  padding: 13px;
 `;

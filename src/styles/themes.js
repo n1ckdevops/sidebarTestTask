@@ -10,6 +10,7 @@ export const lightTheme = {
   logo: "var(--color-text-logo-light-default)",
   buttonBg: "var(--color-button-background-light-default)",
   buttonActive: "var(--color-button-background-light-active)",
+  outerBg: "var(--color-outer-background-light-default)",
 };
 
 export const darkTheme = {
@@ -22,4 +23,5 @@ export const darkTheme = {
   logo: "var(--color-text-logo-dark-default)",
   buttonBg: "var(--color-button-background-dark-default)",
   buttonActive: "var(--color-button-background-dark-active)",
+  outerBg: "var(--color-outer-background-dark-default)",
 };

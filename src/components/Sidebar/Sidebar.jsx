@@ -1,81 +1,95 @@
-import { useState } from 'react';
-import classnames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import logo from '../../assets/logo.png';
-import PropTypes from 'prop-types';
+/** @format */
+
+import { useState } from "react";
+import classnames from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../../assets/logo.png";
+import PropTypes from "prop-types";
+import {
+  SidebarContainer,
+  SidebarHeader,
+  LogoText,
+  ToggleButton,
+  MenuSection,
+  MenuItem,
+  LogoImg,
+  MenuItemText,
+} from "./Sidebar.styled";
 
 const routes = [
-    { title: 'Home', icon: 'fas-solid fa-house', path: '/' },
-    { title: 'Sales', icon: 'chart-line', path: '/sales' },
-    { title: 'Costs', icon: 'chart-column', path: '/costs' },
-    { title: 'Payments', icon: 'wallet', path: '/payments' },
-    { title: 'Finances', icon: 'chart-pie', path: '/finances' },
-    { title: 'Messages', icon: 'envelope', path: '/messages' },
+  { title: "Home", icon: "fas-solid fa-house", path: "/" },
+  { title: "Sales", icon: "chart-line", path: "/sales" },
+  { title: "Costs", icon: "chart-column", path: "/costs" },
+  { title: "Payments", icon: "wallet", path: "/payments" },
+  { title: "Finances", icon: "chart-pie", path: "/finances" },
+  { title: "Messages", icon: "envelope", path: "/messages" },
 ];
 
 const bottomRoutes = [
-    { title: 'Settings', icon: 'sliders', path: '/settings' },
-    { title: 'Support', icon: 'phone-volume', path: '/support' },
+  { title: "Settings", icon: "sliders", path: "/settings" },
+  { title: "Support", icon: "phone-volume", path: "/support" },
 ];
 
 const Sidebar = (props) => {
-    const { color } = props;
-    const [isOpened, setIsOpened] = useState(false);
-    const containerClassnames = classnames('sidebar', { opened: isOpened });
+  const { color } = props;
+  const [isOpened, setIsOpened] = useState(false);
+  const [isActive, setIsActive] = useState(routes[0].path);
 
-    const goToRoute = (path) => {
-        console.log(`going to "${path}"`);
-    };
+  const goToRoute = (path) => {
+    console.log(`going to "${path}"`);
+  };
 
-    const toggleSidebar = () => {
-        setIsOpened(v => !v);
-    };
+  const toggleSidebar = () => {
+    setIsOpened((v) => !v);
+  };
 
-    return (
-        <div className={ containerClassnames }>
-            <div>
-                <img src={ logo } alt="TensorFlow logo"/>
-                <span>TensorFlow</span>
-                <div onClick={ toggleSidebar }>
-                    <FontAwesomeIcon icon={ isOpened ? 'angle-left' : 'angle-right' }/>
-                </div>
-            </div>
-            <div>
-                {
-                    routes.map(route => (
-                        <div
-                            key={ route.title }
-                            onClick={() => {
-                                goToRoute(route.path);
-                            }}
-                        >
-                            <FontAwesomeIcon icon={ route.icon }/>
-                            <span>{ route.title }</span>
-                        </div>
-                    ))
-                }
-            </div>
-            <div>
-                {
-                    bottomRoutes.map(route => (
-                        <div
-                            key={ route.title }
-                            onClick={() => {
-                                goToRoute(route.path);
-                            }}
-                        >
-                            <FontAwesomeIcon icon={ route.icon }/>
-                            <span>{ route.title }</span>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    );
+  return (
+    <SidebarContainer isOpened={isOpened}>
+      <SidebarHeader>
+        <LogoImg src={logo} alt="TensorFlow logo" />
+        <LogoText isOpened={isOpened}>TensorFlow</LogoText>
+        <ToggleButton isOpened={isOpened} onClick={toggleSidebar}>
+          <FontAwesomeIcon icon={isOpened ? "angle-left" : "angle-right"} />
+        </ToggleButton>
+      </SidebarHeader>
+      <MenuSection isOpened={isOpened}>
+        {routes.map((route) => (
+          <MenuItem
+            isOpened={isOpened}
+            key={route.title}
+            active={isActive === route.path}
+            onClick={() => {
+              setIsActive(route.path);
+              goToRoute(route.path);
+            }}
+          >
+            <FontAwesomeIcon icon={route.icon} />
+            <MenuItemText isOpened={isOpened}>{route.title}</MenuItemText>
+          </MenuItem>
+        ))}
+      </MenuSection>
+      <MenuSection isOpened={isOpened}>
+        {bottomRoutes.map((route) => (
+          <MenuItem
+            isOpened={isOpened}
+            key={route.title}
+            active={isActive === route.path}
+            onClick={() => {
+              setIsActive(route.path);
+              goToRoute(route.path);
+            }}
+          >
+            <FontAwesomeIcon icon={route.icon} />
+            <MenuItemText isOpened={isOpened}>{route.title}</MenuItemText>
+          </MenuItem>
+        ))}
+      </MenuSection>
+    </SidebarContainer>
+  );
 };
 
 Sidebar.propTypes = {
-    color: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default Sidebar;

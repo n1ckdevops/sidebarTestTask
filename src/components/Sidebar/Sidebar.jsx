@@ -1,7 +1,6 @@
 /** @format */
 
 import { useState } from "react";
-import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../../assets/logo.png";
 import PropTypes from "prop-types";
@@ -14,6 +13,8 @@ import {
   MenuItem,
   LogoImg,
   MenuItemText,
+  ThemeToggle,
+  IconWrapper,
 } from "./Sidebar.styled";
 
 const routes = [
@@ -30,8 +31,7 @@ const bottomRoutes = [
   { title: "Support", icon: "phone-volume", path: "/support" },
 ];
 
-const Sidebar = (props) => {
-  const { color } = props;
+const Sidebar = ({ themeName, setTheme }) => {
   const [isOpened, setIsOpened] = useState(false);
   const [isActive, setIsActive] = useState(routes[0].path);
 
@@ -83,6 +83,18 @@ const Sidebar = (props) => {
             <MenuItemText isOpened={isOpened}>{route.title}</MenuItemText>
           </MenuItem>
         ))}
+        <ThemeToggle
+          onClick={() => setTheme(themeName === "dark" ? "light" : "dark")}
+        >
+          <IconWrapper>
+            <FontAwesomeIcon
+              icon={["fas", themeName === "dark" ? "sun" : "moon"]}
+            />
+          </IconWrapper>
+          <MenuItemText isOpened={isOpened}>
+            {themeName === "dark" ? "Light" : "Dark"}
+          </MenuItemText>
+        </ThemeToggle>
       </MenuSection>
     </SidebarContainer>
   );

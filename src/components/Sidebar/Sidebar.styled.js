@@ -6,7 +6,6 @@ export const SidebarContainer = styled.div`
   width: ${({ isOpened }) => (isOpened ? "220px" : "80px")};
   background: ${({ theme }) => theme.sidebarBg};
   color: ${({ theme }) => theme.text};
-
   min-height: 97vh;
   margin: 0;
   display: flex;
@@ -55,7 +54,7 @@ export const MenuItem = styled.div`
 
 export const MenuItemText = styled.span`
   margin-left: 12px;
-  transition: opacity 0.2s, width 0.2s;
+  transition: all 0.2s ease;
   opacity: ${({ isOpened }) => (isOpened ? 1 : 0)};
   width: ${({ isOpened }) => (isOpened ? "auto" : "0")};
   overflow: hidden;
@@ -91,4 +90,27 @@ export const LogoText = styled.span`
   width: ${({ isOpened }) => (isOpened ? "auto" : "0")};
   overflow: hidden;
   white-space: nowrap;
+`;
+
+export const ThemeToggle = styled.button`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  background: ${({ theme }) => theme.buttonBg};
+  color: ${({ theme }) => theme.text};
+  &:hover {
+    background: ${({ theme }) => theme.sidebarHover};
+    color: ${({ theme }) => theme.textHover};
+  }
+  transition: all 0.2s ease;
+  font-size: 15px;
+`;
+
+export const IconWrapper = styled.span`
+  width: 20px;
+  display: flex;
 `;

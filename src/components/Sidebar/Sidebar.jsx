@@ -104,9 +104,8 @@ const Sidebar = ({ color, setColor }) => {
 };
 
 Sidebar.propTypes = {
+  //
   color: PropTypes.string,
-  themeName: PropTypes.string,
-  setTheme: PropTypes.func,
 };
 
 export default Sidebar;
